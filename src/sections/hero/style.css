@@ -23,3 +23,13 @@
 .hero-wrapper * {
   margin: 0;
 }
+
+.hero-title {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.hero-text {
+  max-width: 940px;
+  font-size: 20px;
+}
