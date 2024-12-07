@@ -4,7 +4,7 @@ import Countdown from "react-countdown";
 import { useEffect, useState } from "react";
 
 export type platform = "steam" | "epicgames" | "gog";
-const platforms: platform[] = ["steam", "epicgames", "gog"];
+export const platformsArray: platform[] = ["steam", "epicgames", "gog"];
 
 type props = {
   backgroundUrl: string;
@@ -19,7 +19,7 @@ export default function GameCard(props: props) {
 
   useEffect(() => {
     props.tags.forEach((tag) => {
-      if (tag[1] && platforms.indexOf(tag[1]) != -1) {
+      if (tag[1] && platformsArray.indexOf(tag[1]) != -1) {
         setPlatform(tag[1]);
         return;
       }
