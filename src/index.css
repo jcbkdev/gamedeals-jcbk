@@ -2,7 +2,12 @@
   --color-bg: #121212;
   --color-main: #54dd31;
   --color-text: #ffffff;
+  --color-steam: #2441ff;
+  --color-epicgames: #ec7b19;
+  --color-gog: #9e19ec;
+
   --ease: cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  --ease-out: cubic-bezier(0.17, 0.84, 0.44, 1);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
 

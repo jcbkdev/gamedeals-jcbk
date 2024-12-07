@@ -1,0 +1,78 @@
+.game-card {
+  display: flex;
+  flex-direction: column;
+  height: 310px;
+  width: 212px;
+  border: 4px solid #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: transform 0.2s var(--ease-out);
+}
+
+.game-card:hover {
+  border-color: var(--color-main);
+  transform: scale(105%);
+}
+
+.game-card-steam {
+  border-color: var(--color-steam);
+}
+
+.game-card-epicgames {
+  border-color: var(--color-epicgames);
+}
+
+.game-card-gog {
+  border-color: var(--color-gog);
+}
+
+.game-card-image {
+  display: flex;
+  align-items: end;
+  height: 212px;
+  min-height: 212px;
+  width: 100%;
+  max-width: 212px;
+  background-size: cover;
+  background-position: center;
+}
+
+.game-card-image-gradient {
+  width: 100%;
+  height: 122px;
+  background: linear-gradient(rgba(12, 12, 12, 0), var(--color-bg));
+}
+
+.game-card-details {
+  --margin: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: calc(212px - var(--margin) * 2);
+  margin: var(--margin);
+}
+
+.game-card-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  height: 100%;
+}
+
+.game-card-details-bottom {
+  display: flex;
+}
+
+.game-card-end-date {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.game-card-tags-container {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  gap: 8px;
+}

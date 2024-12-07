@@ -1,0 +1,23 @@
+.game-tag {
+  font-size: 10px;
+  color: var(--color-text);
+  padding: 3px;
+  border-radius: 6px;
+  color: var(--color-bg);
+  background-color: var(--color-text);
+}
+
+.game-tag-steam {
+  color: var(--color-text);
+  background-color: var(--color-steam);
+}
+
+.game-tag-epicgames {
+  color: var(--color-text);
+  background-color: var(--color-epicgames);
+}
+
+.game-tag-gog {
+  color: var(--color-text);
+  background-color: var(--color-gog);
+}
