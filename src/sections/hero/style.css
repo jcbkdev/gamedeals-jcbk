@@ -1,0 +1,25 @@
+.hero {
+  /* TODO: add the correct image in the public directory */
+  background-image: url("/hero.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.hero-wrapper * {
+  margin: 0;
+}
