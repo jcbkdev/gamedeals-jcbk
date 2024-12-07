@@ -1,0 +1,25 @@
+.navbar {
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logo-wrapper span {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.logo-wrapper img {
+  width: 48px;
+  height: 48px;
+}

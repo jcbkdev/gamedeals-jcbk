@@ -1,8 +1,7 @@
 :root {
   --color-bg: #121212;
-  --color-main: #54DD31;
-  --color-text: #FFFFFF;
-
+  --color-main: #54dd31;
+  --color-text: #ffffff;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
 
@@ -12,5 +11,6 @@
 }
 
 body {
+  margin: 0;
   max-width: 1440px;
 }
