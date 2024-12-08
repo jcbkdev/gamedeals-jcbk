@@ -32,24 +32,30 @@ export async function getDeals(): Promise<deal[]> {
   const deals: deal[] = [];
 
   const data: gamerpowerResponse[] = await fetch(
-    "https://www.gamerpower.com/api/giveaways?type=game&platform=pc&status=active"
+    "https://fly-alert-nicely.ngrok-free.app/api/get/deals",
+    { headers: { "ngrok-skip-browser-warning": "2137" } }
   ).then((response) =>
     response.json().then((data: gamerpowerResponse[]) => {
+      console.log(data);
       return data;
     })
   );
 
   data.forEach((game: gamerpowerResponse) => {
     const tags = getTags(game.platforms);
-    let platform: platform;
+    let platform: platform | undefined = undefined;
+    let platformName: string = "";
     for (let i = 0; i < tags.length; i++) {
       if (tags[i][1]) {
-        platform = tags[i][1]!;
+        platform = tags[i][1];
+        platformName = tags[i][0];
         break;
       }
     }
 
-    const title = convertTitle(game.title, platform!);
+    if (platform === undefined) return;
+
+    const title = convertTitle(game.title, platformName);
 
     const deal: deal = {
       id: game.id,
@@ -66,26 +72,36 @@ export async function getDeals(): Promise<deal[]> {
   return deals;
 }
 
-function convertTitle(title: string, platform: platform): string {
-  const titleSplit = title.split(" ");
-  let convertedTitle = "";
-  titleSplit.forEach((word: string) => {
-    let wordLower = word.toLowerCase();
-    if (wordLower === platform || wordLower === `(${platform})`) return;
+function convertTitle(title: string, platform: string): string {
+  // Escape the platform name for safe regex usage
+  console.log(platform);
+  const escapedPlatform = platform.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
 
-    convertedTitle += word;
-  });
+  // Create a regex that matches the platform, with or without parentheses
+  const platformRegex = new RegExp(
+    `(?:\\(${escapedPlatform}\\)|${escapedPlatform})`,
+    "i"
+  ); // Case-insensitive match
 
-  return convertedTitle;
+  // Search for the platform in the title
+  const matchIndex = title.search(platformRegex);
+
+  // If the platform is found, return the portion before the platform name
+  if (matchIndex !== -1) {
+    return title.slice(0, matchIndex).trim();
+  }
+
+  // If the platform isn't found, return the title as it is
+  return title;
 }
 
 function getTags(platforms: string): [string, platform?][] {
   let tags: [string, platform?][] = [];
 
-  platforms.split(", ");
+  let platformsSplit = platforms.split(", ");
 
-  for (let i = 0; i < platforms.length; i++) {
-    const platform = platforms[i].replace("Store", "");
+  for (let i = 0; i < platformsSplit.length; i++) {
+    const platform = platformsSplit[i].replace(" Store", "");
     const platformLower = platform.replace(" ", "").toLowerCase() as platform;
     let tag: [string, platform?] = [platform];
 

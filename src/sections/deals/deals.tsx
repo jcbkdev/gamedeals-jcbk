@@ -10,7 +10,7 @@ export default function Deals() {
     getDeals().then((deals: deal[]) => {
       setDeals(deals);
     });
-  });
+  }, []);
 
   return (
     <section className="deals">
