@@ -42,7 +42,11 @@ export default function GameCard(props: props) {
         <p className="game-card-name">{props.gameTitle}</p>
         <div className="game-card-details-bottom">
           <div className="game-card-end-date">
-            <Countdown daysInHours date={props.endDate} />
+            {props.endDate != "N/A" ? (
+              <Countdown daysInHours date={props.endDate} />
+            ) : (
+              <></>
+            )}
           </div>
           <div className="game-card-tags-container">
             {props.tags.map((value) => (
