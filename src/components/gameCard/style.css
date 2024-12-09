@@ -36,6 +36,7 @@
   max-width: 212px;
   background-size: cover;
   background-position: center;
+  border-radius: 4px;
 }
 
 .game-card-image-gradient {
