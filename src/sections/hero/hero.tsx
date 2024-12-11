@@ -1,4 +1,6 @@
 import "./style.css";
+import Popup from "../../components/popup/popup";
+import NotificationSettings from "../../components/notificationSettings/notificationSettings";
 
 export default function Hero() {
   return (
@@ -11,7 +13,11 @@ export default function Hero() {
           deal as soon as it's available.
         </p>
       </div>
-      <button className="button">Configure Your Alerts</button>
+      <Popup
+        trigger={<button className="button">Configure Your Alerts</button>}
+      >
+        <NotificationSettings />
+      </Popup>
     </section>
   );
 }
