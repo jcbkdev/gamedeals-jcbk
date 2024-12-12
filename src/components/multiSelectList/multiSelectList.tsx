@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import "./style.css";
+import { platform } from "../gameCard/gameCard";
 
 type props = {
-  options: string[];
+  options: { name: platform; value: string }[];
+  setter: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export default function MultiSelectList(props: props) {
@@ -23,10 +25,11 @@ export default function MultiSelectList(props: props) {
     setIsAll(checked);
 
     if (checked) {
+      props.setter("all");
       const allCheckedInputs = props.options
         .map((option) => {
           const element = document.getElementById(
-            option.toLowerCase()
+            option.name
           ) as HTMLInputElement;
           if (element) {
             element.checked = true;
@@ -41,7 +44,7 @@ export default function MultiSelectList(props: props) {
       const allUncheckedInputs = props.options
         .map((option) => {
           const element = document.getElementById(
-            option.toLowerCase()
+            option.name
           ) as HTMLInputElement;
           if (element) {
             element.checked = false;
@@ -52,6 +55,7 @@ export default function MultiSelectList(props: props) {
         .filter(Boolean) as HTMLInputElement[];
 
       setCheckedBoxes([]);
+      props.setter(null);
     }
 
     setIndeterminate(false);
@@ -73,14 +77,27 @@ export default function MultiSelectList(props: props) {
 
     if (tempArray.length === 0) {
       setIndeterminate(false);
+      props.setter(null);
     } else if (tempArray.length === props.options.length) {
       setIsAll(true);
+      props.setter("all");
       if (ref.current) {
         setIndeterminate(false);
         ref.current.checked = true;
       }
     } else if (tempArray.length < props.options.length) {
+      const setterArray: platform[] = [];
+      for (let i = 0; i < tempArray.length; i++) {
+        const element = tempArray[i];
+        if (!element.checked) continue;
+
+        setterArray.push(element.id as platform);
+      }
+
+      props.setter(setterArray);
+
       setIndeterminate(true);
+
       if (ref.current) {
         setIndeterminate(true);
         ref.current.checked = false;
@@ -101,16 +118,16 @@ export default function MultiSelectList(props: props) {
         />
         <label>All</label>
       </span>
-      {props.options.map((value) => (
+      {props.options.map((option) => (
         <span className="multiselectlist-option">
           <input
             className="multiselectlist-checkbox"
             onClick={handleCheck}
             type="checkbox"
-            name={value}
-            id={value.toLowerCase()}
+            name={option.name}
+            id={option.name}
           />
-          <label>{value}</label>
+          <label>{option.value}</label>
         </span>
       ))}
     </div>
