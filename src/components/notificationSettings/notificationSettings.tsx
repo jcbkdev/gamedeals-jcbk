@@ -10,6 +10,22 @@ export default function NotificationSettings() {
   const handleClick = () => {
     if (!selection) return;
     console.log(selection);
+    if ("Notification" in window) {
+      if (Notification.permission == "default") {
+        Notification.requestPermission().then(() => {
+          if (Notification.permission == "granted") {
+            subscribe(selection);
+            return;
+          } else {
+            return alert("You need to enable notifications first");
+          }
+        });
+        return;
+      }
+      if (Notification.permission == "denied") {
+        return alert("You need to enable notifications first");
+      }
+    }
     subscribe(selection);
   };
 
