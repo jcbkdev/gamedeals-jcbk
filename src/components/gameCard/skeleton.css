@@ -1,0 +1,21 @@
+.skeleton-game-card {
+  height: 318px;
+  width: 220px;
+  background: #5b5b5b;
+  border-radius: 8px;
+  animation: 1.5s breathe cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+}
+
+@keyframes breathe {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.33;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

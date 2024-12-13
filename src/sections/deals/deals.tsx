@@ -1,5 +1,6 @@
 import "./style.css";
 import GameCard from "../../components/gameCard/gameCard";
+import GameCardSkeleton from "../../components/gameCard/skeleton";
 import { useEffect, useState } from "react";
 import { deal, getDeals } from "../../api/gamerpower";
 
@@ -28,7 +29,12 @@ export default function Deals() {
             />
           ))
         ) : (
-          <></>
+          <>
+            <GameCardSkeleton />
+            <GameCardSkeleton />
+            <GameCardSkeleton />
+            <GameCardSkeleton />
+          </>
         )}
       </div>
     </section>
