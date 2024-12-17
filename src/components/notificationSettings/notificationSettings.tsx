@@ -6,15 +6,20 @@ import { platform } from "../gameCard/gameCard";
 
 export default function NotificationSettings() {
   const [selection, setSelection] = useState<platform[] | "all" | null>(null);
+  const [isWaiting, setIsWaiting] = useState<boolean>(false);
 
   const handleClick = () => {
     if (!selection) return;
+    setIsWaiting(true);
+    console.log("Is watiting to true"); //doesnt show up
     console.log(selection);
     if ("Notification" in window) {
       if (Notification.permission == "default") {
         Notification.requestPermission().then(() => {
           if (Notification.permission == "granted") {
-            subscribe(selection);
+            subscribe(selection).then(() => {
+              setIsWaiting(false);
+            });
             return;
           } else {
             return alert("You need to enable notifications first");
@@ -22,11 +27,17 @@ export default function NotificationSettings() {
         });
         return;
       }
+      if (Notification.permission == "granted") {
+        subscribe(selection).then(() => {
+          console.log("Is waiting to false"); //doesnt show up
+          setIsWaiting(false);
+        });
+        return;
+      }
       if (Notification.permission == "denied") {
         return alert("You need to enable notifications first");
       }
     }
-    subscribe(selection);
   };
 
   return (
@@ -43,8 +54,13 @@ export default function NotificationSettings() {
           ]}
         />
       </div>
-      <button className="button" onClick={handleClick}>
-        Confirm
+      <button
+        className={`button ${isWaiting ? "loading" : ""}`}
+        onClick={() => {
+          if (!isWaiting) handleClick();
+        }}
+      >
+        {isWaiting ? "" : "Confirm"}
       </button>
     </div>
   );

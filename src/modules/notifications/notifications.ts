@@ -31,7 +31,7 @@ async function registerPush(
 }
 
 async function sendPush(push: PushSubscription, tags: platform[] | "all") {
-  await fetch("http://localhost:80/api/post/subscribe", {
+  const response = await fetch("http://localhost:80/api/post/subscribe", {
     method: "POST",
     body: JSON.stringify(push),
     headers: {
@@ -39,13 +39,19 @@ async function sendPush(push: PushSubscription, tags: platform[] | "all") {
       "game-tags": JSON.stringify(tags),
     },
   });
+
+  if (response.status == 500) {
+    alert(
+      "Unable to configure notifications at the moment. Please try again later."
+    );
+  }
 }
 
 export async function subscribe(tags: platform[] | "all") {
   if (!isServiceWorker())
     return alert("Your browser doesn't support service workers");
 
-  registerServiceWorker().then((register) =>
+  return registerServiceWorker().then((register) =>
     registerPush(register).then((push) => sendPush(push, tags))
   );
 }
