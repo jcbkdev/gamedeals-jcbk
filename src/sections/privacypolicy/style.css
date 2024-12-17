@@ -1,0 +1,15 @@
+.privacypolicy-container {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: -webkit-fill-available;
+  height: max-content;
+  padding: 4em;
+  background-color: var(--color-bg);
+}
+
+.privacypolicy-text {
+  margin: auto;
+  max-width: 1280px;
+}

@@ -4,11 +4,19 @@
   justify-content: center;
   height: 50px;
   width: 100%;
-}
+  gap: 1rem;
 
-.footer .copyright {
   font-family: "Inter";
   font-size: 12px;
   font-weight: 200;
   color: white;
+}
+
+.footer .interactive {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer .interactive:hover {
+  color: var(--color-main);
 }
