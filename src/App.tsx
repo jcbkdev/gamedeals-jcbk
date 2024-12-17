@@ -3,6 +3,7 @@ import Navbar from "./components/navbar/navbar";
 import Hero from "./sections/hero/hero";
 import Deals from "./sections/deals/deals";
 import Footer from "./components/footer/footer";
+import Feedback from "./components/feedback/feedback";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <Deals />
       <Footer />
+      <Feedback />
     </>
   );
 }
