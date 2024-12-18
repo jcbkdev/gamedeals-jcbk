@@ -8,6 +8,14 @@ export default function Footer() {
       <PrivacyPolicy
         trigger={<span className="interactive">Privacy Policy</span>}
       />
+      <a
+        href="https://www.gamerpower.com"
+        className="gamerpower-attribution interactive"
+        target="_blank"
+        rel="noopener"
+      >
+        Powered by GamerPower
+      </a>
     </div>
   );
 }

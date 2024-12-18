@@ -20,3 +20,15 @@
 .footer .interactive:hover {
   color: var(--color-main);
 }
+
+.gamerpower-attribution {
+  text-decoration: none;
+}
+
+.gamerpower-attribution {
+  color: var(--color-text);
+}
+
+.gamerpower-attribution:visited {
+  color: var(--color-text);
+}
