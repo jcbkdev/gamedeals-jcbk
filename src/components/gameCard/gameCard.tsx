@@ -32,10 +32,13 @@ export default function GameCard(props: props) {
 
   return (
     <div className={`game-card game-card-${platform}`} onClick={handleClick}>
-      <div
-        className="game-card-image"
-        style={{ backgroundImage: `url(${props.backgroundUrl})` }}
-      >
+      <div className="game-card-image-container">
+        <img
+          className="game-card-image"
+          src={props.backgroundUrl}
+          alt={`Background for ${props.gameTitle} - Free game on ${platform}`}
+          loading="lazy"
+        />
         <div className="game-card-image-gradient"></div>
       </div>
       <div className="game-card-details">
