@@ -8,9 +8,10 @@ export default function Hero() {
       <div className="hero-wrapper">
         <h2 className="hero-title">Missed a Free Game Before? Never Again!</h2>
         <p className="hero-text">
-          Be the first to know about free games and limited-time offers!
-          Activate notifications to receive instant alerts for every free game
-          deal as soon as it's available.
+          Never miss out on free games again! Discover and claim free games from
+          top platforms like Steam, Epic Games, and GOG, all in one place.
+          Activate notifications to get instant alerts and secure every free
+          game deal before it's gone!
         </p>
       </div>
       <Popup
