@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import "./style.css";
 import { platform } from "../gameCard/gameCard";
+import Checkbox from "../checkbox/checkbox";
 
 type props = {
   options: { name: platform; value: string }[];
@@ -107,28 +108,9 @@ export default function MultiSelectList(props: props) {
 
   return (
     <div className="multiselectlist-options">
-      <span className="multiselectlist-option multiselectlist-option-all">
-        <input
-          className="multiselectlist-checkbox"
-          onClick={handleCheckAll}
-          ref={ref}
-          type="checkbox"
-          name="all"
-          id="all"
-        />
-        <label>All</label>
-      </span>
+      <Checkbox id="all" ref={ref} onClick={handleCheckAll} label="All" />
       {props.options.map((option) => (
-        <span className="multiselectlist-option">
-          <input
-            className="multiselectlist-checkbox"
-            onClick={handleCheck}
-            type="checkbox"
-            name={option.name}
-            id={option.name}
-          />
-          <label>{option.value}</label>
-        </span>
+        <Checkbox id={option.name} onClick={handleCheck} label={option.value} />
       ))}
     </div>
   );

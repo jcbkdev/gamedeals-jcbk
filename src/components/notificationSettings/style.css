@@ -28,6 +28,7 @@
   font-family: "Inter";
   font-size: 24px;
   font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .notification-settings .button.loading {
