@@ -1,0 +1,19 @@
+.bubbles {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  display: flex;
+  gap: 12px;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(32px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
