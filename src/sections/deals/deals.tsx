@@ -6,11 +6,18 @@ import { deal, getDeals } from "../../api/gamerpower";
 
 export default function Deals() {
   const [deals, setDeals] = useState<deal[]>();
+  const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    getDeals().then((deals: deal[]) => {
-      setDeals(deals);
-    });
+    getDeals()
+      .then((deals: deal[]) => {
+        setDeals(deals);
+      })
+      .catch((err: Error) => {
+        if (err.message == "Load failed") {
+          setIsError(true);
+        }
+      });
   }, []);
 
   return (
@@ -30,10 +37,18 @@ export default function Deals() {
           ))
         ) : (
           <>
-            <GameCardSkeleton />
-            <GameCardSkeleton />
-            <GameCardSkeleton />
-            <GameCardSkeleton />
+            {isError ? (
+              <span className="deals-error">
+                Could not establish a connection with the GameDeals server
+              </span>
+            ) : (
+              <>
+                <GameCardSkeleton />
+                <GameCardSkeleton />
+                <GameCardSkeleton />
+                <GameCardSkeleton />
+              </>
+            )}
           </>
         )}
       </div>

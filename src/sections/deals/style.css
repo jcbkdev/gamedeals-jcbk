@@ -12,6 +12,17 @@
   row-gap: 45px;
 }
 
+.deals-container:has(.deals-error) {
+  display: flex;
+  align-items: center;
+}
+
+.deals-error {
+  color: #e41a2b;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 @media only screen and (max-width: 1024px) {
   .deals-container {
     grid-template-columns: repeat(3, 1fr);
