@@ -4,7 +4,7 @@ import PrivacyPolicy from "../../sections/privacypolicy/privacypolicy";
 export default function Footer() {
   return (
     <div className="footer">
-      <span className="copyright">jcbk©2024</span>
+      <span className="copyright">jcbk©2025</span>
       <PrivacyPolicy
         trigger={<span className="interactive">Privacy Policy</span>}
       />
