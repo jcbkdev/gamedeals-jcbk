@@ -1,0 +1,19 @@
+.button {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 12 38;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+
+  background-color: var(--color-main);
+  color: var(--color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--color-theme-default);
+  color: var(--color-text-dark);
+}

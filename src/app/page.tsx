@@ -1,12 +1,12 @@
 import styles from "./page.module.css";
+import Hero from "./sections/Hero/Hero";
 import Deals from "./sections/Deals/Deals";
 
 export default function Home() {
   return (
     <div>
-      <div>
-        <Deals />
-      </div>
+      <Hero />
+      <Deals />
     </div>
   );
 }
