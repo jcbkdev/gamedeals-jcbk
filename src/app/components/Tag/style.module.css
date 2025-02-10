@@ -1,0 +1,14 @@
+.tag {
+  padding: 3;
+  font-size: 10px;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--color-theme-default);
+  color: var(--color-text-dark);
+  border-radius: 6px;
+}
+
+.tag[main-platform] {
+  background-color: var(--color-theme);
+  color: var(--color-text);
+}
