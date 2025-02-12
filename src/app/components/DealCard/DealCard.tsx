@@ -24,8 +24,9 @@ export default function DealCard(props: props) {
               <Timer date={props.deal.end_date} />
             </span>
             <span className={styles.dealTagContainer}>
-              {props.deal.platforms.map((t) => (
+              {props.deal.platforms.map((t, index) => (
                 <Tag
+                  key={index}
                   mainPlatform={(
                     props.deal.main_platform.toLowerCase().replace(" ", "") ===
                     t.toLowerCase().replace(" ", "")
