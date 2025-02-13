@@ -2,6 +2,8 @@
 
 import styles from "./style.module.css";
 import Button from "@/app/components/Button/Button";
+import Popup from "@/app/components/Popup/Popup";
+import NotificationSettings from "@/app/components/NotificationSettings/NotificationSettings";
 
 export default function Hero() {
   return (
@@ -17,13 +19,9 @@ export default function Hero() {
           game deal before it's gone!
         </h2>
       </div>
-      <Button
-        onClick={() => {
-          return;
-        }}
-      >
-        Configure Your Alerts
-      </Button>
+      <Popup triggerElement={<Button>Configure Your Alerts</Button>}>
+        <NotificationSettings />
+      </Popup>
     </header>
   );
 }

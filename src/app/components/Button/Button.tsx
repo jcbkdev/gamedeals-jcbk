@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 import { MouseEventHandler } from "react";
 
 type Props = {
-  onClick: MouseEventHandler;
+  onClick?: MouseEventHandler;
   children: string;
 };
 

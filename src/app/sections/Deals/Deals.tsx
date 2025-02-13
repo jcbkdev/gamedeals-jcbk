@@ -3,7 +3,7 @@ import DealCard from "@/app/components/DealCard/DealCard";
 import { Game } from "@/types/game.type";
 
 export default async function Deals() {
-  const deals: Game[] | null = await fetch(process.env.SERVER_URI!).then(
+  const deals: Game[] | null = await fetch(process.env.DEALS_URI!).then(
     (res) => {
       if (res.status === 200) return res.json();
       else return null;
