@@ -7,6 +7,12 @@
   --color-bg: #121212;
   --color-text: #ffffff;
   --color-text-dark: #121212;
+  --color-sem-good: #54dd31;
+  --color-sem-warn: #ddac31;
+  --color-sem-bad: #dd4831;
+  --color-sem-good-rgb: 84, 221, 49;
+  --color-sem-warn-rgb: 221, 172, 49;
+  --color-sem-bad-rgb: 221, 72, 49;
 }
 
 html {

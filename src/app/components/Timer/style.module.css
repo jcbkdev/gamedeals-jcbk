@@ -1,4 +1,40 @@
+.timerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 146px;
+  height: 24px;
+  background-color: rgba(var(--color-sem-good-rgb), 0.4);
+  border: 1px solid var(--color-sem-good);
+  border-radius: 8px;
+}
+
 .timer {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 900;
+}
+
+.timerContainer[data-timer-type="good"] {
+  background-color: rgba(var(--color-sem-good-rgb), 0.4);
+  border: 1px solid var(--color-sem-good);
+}
+
+.timerContainer[data-timer-type="bad"] {
+  background-color: rgba(var(--color-sem-bad-rgb), 0.4);
+  border: 1px solid var(--color-sem-bad);
+  animation: pulse 1s ease infinite;
+}
+
+.timerContainer[data-timer-type="warn"] {
+  background-color: rgba(var(--color-sem-warn-rgb), 0.4);
+  border: 1px solid var(--color-sem-warn);
+}
+
+@keyframes pulse {
+  from {
+    outline: 0px solid rgba(var(--color-sem-bad-rgb), 1);
+  }
+  to {
+    outline: 6px solid rgba(var(--color-sem-bad-rgb), 0);
+  }
 }

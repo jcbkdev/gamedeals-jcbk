@@ -2,6 +2,7 @@ import { Game } from "@/types/game.type";
 import styles from "./style.module.css";
 import Timer from "../Timer/Timer";
 import Tag from "../Tag/Tag";
+import DealDetails from "../DealDetails/DealDetails";
 
 type props = {
   deal: Game;
@@ -9,7 +10,7 @@ type props = {
 
 export default function DealCard(props: props) {
   return (
-    <a href={props.deal.url} target="_blank" rel="noopener noreferrer">
+    <DealDetails deal={props.deal}>
       <div className={styles.dealCard} main-platform={props.deal.main_platform}>
         <div className={styles.dealImageContainer}>
           <img src={`data:image/jpeg;base64,${props.deal.images[0]}`} alt="" />
@@ -20,10 +21,7 @@ export default function DealCard(props: props) {
             <h3>{props.deal.name}</h3>
           </div>
           <div className={styles.dealInfo}>
-            <span>
-              <Timer date={props.deal.end_date} />
-            </span>
-            <span className={styles.dealTagContainer}>
+            <div className={styles.dealTagContainer}>
               {props.deal.platforms.map((t, index) => (
                 <Tag
                   key={index}
@@ -35,10 +33,13 @@ export default function DealCard(props: props) {
                   {t}
                 </Tag>
               ))}
-            </span>
+            </div>
+            <div>
+              <Timer date={props.deal.end_date} />
+            </div>
           </div>
         </div>
       </div>
-    </a>
+    </DealDetails>
   );
 }
