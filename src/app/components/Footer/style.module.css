@@ -9,4 +9,5 @@
   font-size: 12px;
   font-weight: 300;
   text-align: center;
+  background-color: var(--color-bg);
 }
