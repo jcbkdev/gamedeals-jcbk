@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./style.module.css";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 type Props = {
@@ -14,19 +14,33 @@ type Props = {
 
 export default function Popup(props: Props) {
   const [isOpen, setOpen] = useState<boolean>(props.open ?? false);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
-  const setScroll = (state: boolean) => {
-    state
-      ? (document.documentElement.style.overflow = "unset")
-      : (document.documentElement.style.overflow = "hidden");
-  };
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const setScroll = (state: boolean) => {
+      state
+        ? (document.documentElement.style.overflow = "unset")
+        : (document.documentElement.style.overflow = "hidden");
+    };
+
+    if (isOpen) {
+      setScroll(false);
+    } else {
+      setScroll(true);
+    }
+
+    return () => setScroll(true);
+  }, [isOpen]);
 
   const handleTriggerClick = () => {
     if (props.onOpen) {
       props.onOpen();
     }
     setOpen(true);
-    setScroll(false);
   };
 
   const handleCloseClick = () => {
@@ -34,7 +48,6 @@ export default function Popup(props: Props) {
       props.onClose();
     }
     setOpen(false);
-    setScroll(true);
   };
 
   const triggerClone = props.triggerElement
@@ -42,6 +55,10 @@ export default function Popup(props: Props) {
         onClick: handleTriggerClick,
       })
     : null;
+
+  if (!isMounted) {
+    return triggerClone ?? <></>;
+  }
 
   return (
     <>

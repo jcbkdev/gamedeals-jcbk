@@ -4,8 +4,8 @@ const REPO_NAME = "gamedeals-jcbk";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: `/${REPO_NAME}`,
-  assetPrefix: `/${REPO_NAME}/`,
+  basePath: "",
+  assetPrefix: "",
   images: {
     unoptimized: true,
   },

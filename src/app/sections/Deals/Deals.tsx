@@ -1,6 +1,8 @@
 import styles from "./styles.module.css";
 import DealCard from "@/app/components/DealCard/DealCard";
+import DealDetails from "@/app/components/DealDetails/DealDetails";
 import { Game } from "@/types/game.type";
+import { Suspense } from "react";
 
 export default async function Deals() {
   const deals: Game[] | null = await fetch(
@@ -16,7 +18,13 @@ export default async function Deals() {
       <div className={styles.dealsContainer}>
         {deals ? (
           deals.length >= 1 ? (
-            deals.map((d) => <DealCard key={d.id} deal={d} />)
+            deals.map((d) => (
+              <Suspense key={d.id} fallback={<DealCard deal={d} />}>
+                <DealDetails deal={d}>
+                  <DealCard deal={d} />
+                </DealDetails>
+              </Suspense>
+            ))
           ) : (
             <p>No deals available</p>
           )
