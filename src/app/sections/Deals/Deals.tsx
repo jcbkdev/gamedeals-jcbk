@@ -15,7 +15,11 @@ export default async function Deals() {
       <h2>Currently Available Free Games</h2>
       <div className={styles.dealsContainer}>
         {deals ? (
-          deals.map((d) => <DealCard key={d.id} deal={d} />)
+          deals.length >= 1 ? (
+            deals.map((d) => <DealCard key={d.id} deal={d} />)
+          ) : (
+            <p>No deals available</p>
+          )
         ) : (
           <p>No deals could get fetched</p>
         )}
