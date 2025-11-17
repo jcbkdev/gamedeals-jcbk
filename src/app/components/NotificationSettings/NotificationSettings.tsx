@@ -52,20 +52,20 @@ export default function NotificationSettings() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_NOTIFICATIONS_URI!, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ checked }),
-      });
+    // try {
+    //   const response = await fetch(process.env.NEXT_PUBLIC_NOTIFICATIONS_URI!, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ checked }),
+    //   });
 
-      if (!response.ok) throw new Error("Failed to send request");
-      console.log("Success:", await response.json());
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    //   if (!response.ok) throw new Error("Failed to send request");
+    //   console.log("Success:", await response.json());
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
   };
 
   return (
