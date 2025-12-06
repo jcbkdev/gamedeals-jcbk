@@ -1,8 +1,6 @@
-import type NextConfig from "next";
-
 const REPO_NAME = "gamedeals-jcbk";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   output: "export",
   basePath: "",
   assetPrefix: "",
