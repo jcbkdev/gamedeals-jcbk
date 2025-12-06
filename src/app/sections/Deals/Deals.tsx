@@ -14,20 +14,16 @@ export default function Deals() {
   useEffect(() => {
     const fetchDeals = async () => {
       try {
-        const res = await fetch(process.env.NEXT_PUBLIC_DEALS_URI!).then(
-          (res) => {
-            if (res.status === 200) return res.json();
-            else return null;
-          }
-        );
-
+        const res = await fetch(process.env.NEXT_PUBLIC_DEALS_URI!);
         if (res.status === 200) {
           const data = await res.json();
           setDeals(data);
         } else {
+          console.log("wtf");
           setError(true);
         }
       } catch (err) {
+        console.log(err);
         setError(true);
       } finally {
         setLoading(false);
