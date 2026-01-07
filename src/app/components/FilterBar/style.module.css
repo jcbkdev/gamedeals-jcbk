@@ -1,0 +1,50 @@
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.filterBar .categories {
+  display: flex;
+}
+
+.filterBar .categories button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
+  gap: 4px;
+  padding: 0 8px;
+  color: #ffffff99;
+  cursor: pointer;
+  transition: color 0.15s ease-out;
+}
+
+.filterBar .categories button::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 3px;
+  padding: 0 8px;
+  background-color: var(--color-main);
+  box-shadow: 0 2px 7px var(--color-main);
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+.filterBar .categories button[data-selected] {
+  color: #ffffff;
+}
+
+.filterBar .categories button[data-selected]::after {
+  opacity: 1;
+}
+
+@media screen and (max-width: 720px) {
+  .filterBar {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
