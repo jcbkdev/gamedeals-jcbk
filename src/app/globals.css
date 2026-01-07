@@ -1,10 +1,13 @@
+@import url("./fonts/satoshi/satoshi.css");
+@import url("./fonts/nippo/nippo.css");
+
 :root {
-  --color-main: #54dd31;
+  --color-main: #313cdd;
   --color-theme-default: #ffffff;
   --color-theme-steam: #2441ff;
   --color-theme-epicgames: #ec7b19;
   --color-theme-gog: #9e19ec;
-  --color-bg: #121212;
+  --color-bg: #100f1d;
   --color-text: #ffffff;
   --color-text-dark: #121212;
   --color-sem-good: #54dd31;
@@ -29,7 +32,7 @@ body {
 body {
   color: var(--color-text);
   background: var(--color-bg);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-family: Satoshi-Variable, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

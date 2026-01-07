@@ -3,39 +3,48 @@ import styles from "./style.module.css";
 import Timer from "../Timer/Timer";
 import Tag from "../Tag/Tag";
 import DealDetails from "../DealDetails/DealDetails";
+import { useEffect, useState } from "react";
+import { isUrl } from "@/utils/isurl";
 
 type props = {
   deal: Game;
 };
 
 export default function DealCard(props: props) {
+  const [imgSrc, setImageSrc] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    console.log(`${props.deal.name}:`, props.deal.images);
+    if (props.deal.images[0]) {
+      console.log("isurl:", isUrl(props.deal.images[0]));
+      if (isUrl(props.deal.images[0])) {
+        setImageSrc(props.deal.images[0]);
+      } else {
+        setImageSrc(`data:image/jpeg;base64,${props.deal.images[0]}`);
+      }
+    } else {
+      setImageSrc("/image_missing.png");
+    }
+
+    return () => {
+      setImageSrc("");
+    };
+  }, []);
+
   return (
     <div className={styles.dealCard} main-platform={props.deal.main_platform}>
-      <div className={styles.dealImageContainer}>
-        <img src={`data:image/jpeg;base64,${props.deal.images[0]}`} alt="" />
-        <div className={styles.dealImageGradient}></div>
-      </div>
-      <div className={styles.dealDetails}>
-        <div className={styles.dealTitleContainer}>
-          <h3>{props.deal.name}</h3>
-        </div>
+      <img src={imgSrc} alt="" />
+      <div>
+        <h3 className={styles.dealGame}>{props.deal.name}</h3>
         <div className={styles.dealInfo}>
-          <div className={styles.dealTagContainer}>
-            {props.deal.platforms.map((t, index) => (
-              <Tag
-                key={index}
-                mainPlatform={(
-                  props.deal.main_platform.toLowerCase().replace(" ", "") ===
-                  t.toLowerCase().replace(" ", "")
-                ).toString()}
-              >
-                {t}
-              </Tag>
-            ))}
-          </div>
-          <div>
-            <Timer date={props.deal.end_date} />
-          </div>
+          <p>
+            {props.deal.platforms.find(
+              (p) =>
+                p.toLowerCase().replace(" ", "") ===
+                props.deal.main_platform.toLowerCase().replace(" ", "")
+            )}
+          </p>
+          <Timer date={props.deal.end_date} />
         </div>
       </div>
     </div>

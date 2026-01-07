@@ -1,8 +1,10 @@
 .dealsSection {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   gap: 24px;
+  margin: 0 auto;
+  max-width: 1248px;
   width: 100%;
 }
 
@@ -13,10 +15,9 @@
 
 .dealsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 212px);
+  grid-template-columns: repeat(auto-fit, 188px);
   width: 100%;
-  max-width: 968px;
-  justify-content: center;
-  column-gap: 40px;
-  row-gap: 50px;
+  justify-content: start;
+  column-gap: 24px;
+  row-gap: 24px;
 }

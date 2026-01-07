@@ -2,31 +2,29 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 340px;
-  gap: 24px;
+  align-items: start;
+  margin: 0 auto;
+  max-width: 1248px;
+  height: 520px;
 
-  background-image: url("/hero.webp");
-}
-
-.heroTextContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 920px;
-  width: 100%;
-  height: fit-content;
-  gap: 12px;
+  background-image: url("/hero_bg.png");
 }
 
 .heroTitle {
-  font-size: 2.5rem;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  color: #ffffff;
+  font-family: Nippo-Variable;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
-.heroDescription {
-  font-size: 1rem;
-  font-weight: 400;
-  text-align: center;
+.heroTitle .l1 {
+  margin: 0;
+  font-size: 4rem;
+}
+.heroTitle .l2 {
+  margin-top: -1.5rem;
+  font-size: 5.125rem;
 }

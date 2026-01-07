@@ -8,18 +8,11 @@ import NotificationSettings from "@/app/components/NotificationSettings/Notifica
 export default function Hero() {
   return (
     <header className={styles.hero}>
-      <div className={styles.heroTextContainer}>
-        <h1 className={styles.heroTitle}>
-          Missed a Free Game Before? Never Again!
-        </h1>
-        <h2 className={styles.heroDescription}>
-          Never miss out on free games again! Discover and claim free games from
-          top platforms like Steam, Epic Games, and GOG, all in one place.
-          Activate notifications to get instant alerts and secure every free
-          game deal before it's gone!
-        </h2>
-      </div>
-      <Popup triggerElement={<Button>Configure Your Alerts</Button>}>
+      <h1 className={styles.heroTitle}>
+        <span className={styles.l1}>Stop missing</span>
+        <span className={styles.l2}>free games</span>
+      </h1>
+      <Popup triggerElement={<Button>Activate Notifications</Button>}>
         <NotificationSettings />
       </Popup>
     </header>

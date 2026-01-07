@@ -23,6 +23,10 @@ export default function Timer(props: { date: string | number }) {
   const [time, setTime] = useState<number>(-1);
 
   useEffect(() => {
+    setTime(countDown(dateNumber));
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setTime(countDown(dateNumber));
     }, 1000);
@@ -32,24 +36,16 @@ export default function Timer(props: { date: string | number }) {
     return () => clearInterval(interval);
   }, []);
 
+  if (time === -1) return <p>Loading...</p>;
+
   return (
     <>
       {time > 0 && (
-        <div
-          className={styles.timerContainer}
-          data-timer-type={time > 2 ? "good" : time > 1 ? "warn" : "bad"}
-        >
-          <span className={styles.timer}>
-            <span>
-              ENDS{" "}
-              {time > 2
-                ? `IN ${time - 1} DAYS`
-                : time > 1
-                ? "TOMORROW"
-                : "TODAY"}
-            </span>
-          </span>
-        </div>
+        <p>
+          {time > 1
+            ? `${time - 1} ${time > 2 ? "days" : "day"} left`
+            : `Ends today`}
+        </p>
       )}
     </>
   );
