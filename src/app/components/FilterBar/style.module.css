@@ -22,6 +22,10 @@
   transition: color 0.15s ease-out;
 }
 
+.filterBar .categories button:hover {
+  color: #ffffff;
+}
+
 .filterBar .categories button::after {
   display: block;
   content: "";
