@@ -103,6 +103,7 @@ a.disabled button {
 
 .otherWrapper {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   gap: 24px;
 }
@@ -110,5 +111,8 @@ a.disabled button {
 @media screen and (max-width: 720px) {
   .dealContainer {
     flex-direction: column;
+  }
+  .otherWrapper {
+    justify-content: center;
   }
 }
