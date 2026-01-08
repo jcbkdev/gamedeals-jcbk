@@ -30,6 +30,7 @@ body {
 }
 
 body {
+  padding: 0 24px;
   color: var(--color-text);
   background: var(--color-bg);
   font-family: Satoshi-Variable, Arial, Helvetica, sans-serif;
