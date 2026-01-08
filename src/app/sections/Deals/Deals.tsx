@@ -81,9 +81,9 @@ export default function Deals() {
         {filteredDeals && filteredDeals.length >= 1 ? (
           filteredDeals.map((d) => (
             <div key={d.id}>
-              <DealDetails deal={d}>
+              <a href={"/deal?id=" + d.id}>
                 <DealCard deal={d} />
-              </DealDetails>
+              </a>
             </div>
           ))
         ) : (
