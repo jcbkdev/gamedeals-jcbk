@@ -70,6 +70,8 @@ export default function DealContent() {
     if (!deal) return;
     const date = Date.parse(deal.end_date);
 
+    if (deal.active === false) return setActive(false);
+
     setActive(countDown(date) > 0);
   }, [deal]);
 
@@ -132,7 +134,7 @@ export default function DealContent() {
                     deal.main_platform.toLowerCase().replace(" ", "")
                 )}
               </p>
-              <Timer date={deal.end_date} />
+              <Timer active={deal.active} date={deal.end_date} />
             </div>
           </div>
         </div>
