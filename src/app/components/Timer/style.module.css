@@ -9,6 +9,10 @@
   border-radius: 8px;
 }
 
+.expired {
+  color: #ff0000;
+}
+
 .timer {
   font-size: 12px;
   font-weight: 600;

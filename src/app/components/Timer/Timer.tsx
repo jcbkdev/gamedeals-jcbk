@@ -3,7 +3,7 @@
 import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 
-function countDown(countDownDate: number): number {
+export function countDown(countDownDate: number): number {
   const now = Date.now();
   const distance = countDownDate - now;
 
@@ -40,12 +40,14 @@ export default function Timer(props: { date: string | number }) {
 
   return (
     <>
-      {time > 0 && (
+      {time > 0 ? (
         <p>
           {time > 1
             ? `${time - 1} ${time > 2 ? "days" : "day"} left`
             : `Ends today`}
         </p>
+      ) : (
+        <p className={styles.expired}>Expired</p>
       )}
     </>
   );

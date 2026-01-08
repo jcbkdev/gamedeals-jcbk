@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../components/Button/Button";
 import Tag from "../components/Tag/Tag";
-import Timer from "../components/Timer/Timer";
+import Timer, { countDown } from "../components/Timer/Timer";
 import styles from "./styles.module.css";
 import { Game } from "@/types/game.type";
 import { useSearchParams } from "next/navigation";
@@ -16,6 +16,7 @@ export default function DealContent() {
   const [deals, setDeals] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [imgSrc, setImageSrc] = useState<string | undefined>(undefined);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const fetchDeal = async () => {
@@ -67,6 +68,13 @@ export default function DealContent() {
 
   useEffect(() => {
     if (!deal) return;
+    const date = Date.parse(deal.end_date);
+
+    setActive(countDown(date) > 0);
+  }, [deal]);
+
+  useEffect(() => {
+    if (!deal) return;
     const fetchDeals = async () => {
       const res = await fetch(process.env.NEXT_PUBLIC_DEALS_URI!, {
         cache: "reload",
@@ -109,12 +117,12 @@ export default function DealContent() {
           </div>
           <div className={styles.dealControls}>
             <a
-              className={styles.button}
               href={deal.url}
+              className={active ? "" : styles.disabled}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button>Get the game</Button>
+              <Button>{active ? "Get the game" : "Expired offer"}</Button>
             </a>
             <div className={styles.dealInfo}>
               <p>
