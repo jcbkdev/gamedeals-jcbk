@@ -16,7 +16,10 @@ export function countDown(countDownDate: number): number {
   return days;
 }
 
-export default function Timer(props: { date: string | number }) {
+export default function Timer(props: {
+  date: string | number;
+  active?: boolean;
+}) {
   const dateString = props.date.toString();
   const dateNumber = Date.parse(dateString);
 
@@ -40,7 +43,7 @@ export default function Timer(props: { date: string | number }) {
 
   return (
     <>
-      {time > 0 ? (
+      {time > 0 && props.active !== false ? (
         <p>
           {time > 1
             ? `${time - 1} ${time > 2 ? "days" : "day"} left`
