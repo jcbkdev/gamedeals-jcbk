@@ -30,6 +30,7 @@ jobs:
       - name: Build Next.js static site
         env:
           NEXT_PUBLIC_DEALS_URI: ${{ secrets.NEXT_PUBLIC_DEALS_URI }}
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
 
         run: npm run build
 
