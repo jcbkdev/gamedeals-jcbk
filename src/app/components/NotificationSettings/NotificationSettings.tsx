@@ -2,8 +2,10 @@
 
 import styles from "./style.module.css";
 import Checkbox from "../Checkbox/Checkbox";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
+import { checkSubscriptionStatus, messaging } from "@/utils/firebase";
+import { deleteToken, getToken } from "firebase/messaging";
 
 type Option = {
   id: string;
@@ -13,6 +15,15 @@ type Option = {
 export default function NotificationSettings() {
   const [checked, setChecked] = useState<string[]>([]);
   const allCheck = useRef<HTMLInputElement | null>(null);
+  const [subscribed, setSubscribed] = useState(false);
+
+  useEffect(() => {
+    async function init() {
+      const status = await checkSubscriptionStatus();
+      setSubscribed(status);
+    }
+    init();
+  }, []);
 
   const checkboxes: Option[] = [
     { id: "check-steam", value: "Steam" },
@@ -51,21 +62,70 @@ export default function NotificationSettings() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!messaging) return;
 
-    // try {
-    //   const response = await fetch(process.env.NEXT_PUBLIC_NOTIFICATIONS_URI!, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ checked }),
-    //   });
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        const token = await getToken(messaging, {
+          vapidKey: process.env.NEXT_PUBLIC_VAPIDKEY,
+        });
 
-    //   if (!response.ok) throw new Error("Failed to send request");
-    //   console.log("Success:", await response.json());
-    // } catch (error) {
-    //   console.error("Error:", error);
-    // }
+        if (token) {
+          await fetch(process.env.NEXT_PUBLIC_SERVER_URL + "/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              token: token,
+              platforms: checked,
+            }),
+          });
+          return true;
+        }
+      }
+    } catch (err) {
+      console.error("Error subscribing", err);
+    }
+    return false;
+  };
+
+  const handleUnsubscribe = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (!messaging) return;
+
+    try {
+      const currentToken = await getToken(messaging, {
+        vapidKey: process.env.NEXT_PUBLIC_VAPIDKEY,
+      });
+
+      if (currentToken) {
+        await fetch(process.env.NEXT_PUBLIC_SERVER_URL + "/unsubscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: currentToken }),
+        });
+      }
+
+      await deleteToken(messaging);
+
+      if ("serviceWorker" in navigator) {
+        const registration = await navigator.serviceWorker.getRegistration();
+
+        if (registration) {
+          const subscription = await registration.pushManager.getSubscription();
+          if (subscription) {
+            await subscription.unsubscribe();
+          }
+        }
+      }
+
+      alert("Unsubscribed successfully");
+      setSubscribed(false);
+    } catch (err) {
+      console.error("Error unsubscribing", err);
+      setSubscribed(false);
+    }
   };
 
   return (
@@ -91,6 +151,15 @@ export default function NotificationSettings() {
         ))}
       </div>
       <Button>Confirm</Button>
+      {subscribed && (
+        <Button
+          onClick={(e) => {
+            handleUnsubscribe(e);
+          }}
+        >
+          Unsubscribe
+        </Button>
+      )}
     </form>
   );
 }
