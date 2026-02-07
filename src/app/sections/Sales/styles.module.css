@@ -1,4 +1,4 @@
-.dealsSection {
+.salesSection {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -6,25 +6,30 @@
   margin: 0 auto;
   max-width: 1248px;
   width: 100%;
-  margin-bottom: 82px;
 }
 
-.dealsSection h2 {
+.salesSection h2 {
   font-size: 24px;
   font-weight: 700;
 }
 
-.dealsContainer {
+.salesContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 188px);
+  grid-template-columns: repeat(auto-fit, 400px);
   width: 100%;
   justify-content: start;
   column-gap: 24px;
-  row-gap: 24px;
+  row-gap: 36px;
 }
 
-@media screen and (max-width: 720px) {
-  .dealsContainer {
+.salesButtonContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1310px) {
+  .salesContainer {
     justify-content: center;
   }
 }

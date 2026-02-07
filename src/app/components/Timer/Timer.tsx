@@ -20,8 +20,13 @@ export default function Timer(props: {
   date: string | number;
   active?: boolean;
 }) {
-  const dateString = props.date.toString();
-  const dateNumber = Date.parse(dateString);
+  let dateNumber = 0;
+  if (isNaN(Number(props.date))) {
+    const dateString = props.date.toString();
+    dateNumber = Date.parse(dateString);
+  } else {
+    dateNumber = props.date as number;
+  }
 
   const [time, setTime] = useState<number>(-1);
 
