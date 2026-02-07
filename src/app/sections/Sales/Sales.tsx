@@ -54,7 +54,7 @@ export default function Sales() {
         {sales && sales.length >= 1 ? (
           sales.map((s) => (
             <div key={s.id}>
-              <a href={s.url}>
+              <a href={s.url} rel="noopener noreferrer" target="_blank">
                 <SaleCard sale={s} />
               </a>
             </div>
