@@ -30,6 +30,7 @@ jobs:
       - name: Build Next.js static site
         env:
           NEXT_PUBLIC_DEALS_URI: ${{ secrets.NEXT_PUBLIC_DEALS_URI }}
+          NEXT_PUBLIC_SALES_URI: ${{ secrets.NEXT_PUBLIC_SALES_URI }}
           NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
           NEXT_PUBLIC_NOTIFICATIONS_URI: ${{ secrets.NEXT_PUBLIC_NOTIFICATIONS_URI }}
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
