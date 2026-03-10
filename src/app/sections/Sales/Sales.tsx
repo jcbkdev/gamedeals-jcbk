@@ -69,8 +69,10 @@ export default function Sales() {
             onClick={async (e) => {
               const btn = e.currentTarget as HTMLButtonElement;
               btn.disabled = true;
+              btn.innerText = "Loading...";
               await fetchDeals();
               btn.disabled = false;
+              btn.innerText = "Load more";
             }}
           >
             Load more

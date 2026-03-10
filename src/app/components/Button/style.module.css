@@ -9,11 +9,19 @@
 
   background-color: var(--color-main);
   color: var(--color-text);
-  transition: background-color 0.15s ease-out, color 0.15s ease-out;
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out;
 }
 
 .button:hover {
   cursor: pointer;
   background-color: var(--color-theme-default);
   color: var(--color-text-dark);
+}
+
+.button:disabled {
+  background-color: var(--color-disabled);
+  color: #a9a9a9;
+  cursor: default;
 }
